@@ -99,6 +99,7 @@ import com.dking.crocapp.ui.components.formatBytes
 import com.dking.crocapp.ui.receive.ReceivedFile
 import com.dking.crocapp.ui.receive.openReceivedFile
 import com.dking.crocapp.ui.receive.shareReceivedFile
+import com.dking.crocapp.ui.pairing.CrocPairingAnimation
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -337,6 +338,8 @@ private fun TransferStatusSection(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        CrocPairingAnimation(state = state)
+
         if (isSending) {
             QuickSendTransferCard(
                 state = state,
