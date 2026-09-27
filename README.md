@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.jpg" alt="Croc-Saurian — File Sharing" width="100%">
+  <img src="assets/banner.png" alt="Croc-Saurian — File Sharing" width="100%">
 </p>🐊 Croc-Saurian
 
 Simple file sharing across your devices
