@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.dking.crocapp.R
 import com.dking.crocapp.croc.CrocEngine
 import com.dking.crocapp.croc.CrocTransferState
+import com.dking.crocapp.ui.pairing.CrocPairingAnimation
 
 @Composable
 fun TransferProgressCard(
@@ -66,6 +67,8 @@ fun TransferProgressCard(
             modifier = Modifier.padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
+            CrocPairingAnimation(state = state)
+
             when (state) {
                 is CrocTransferState.Preparing -> {
                     TransferHeader(
