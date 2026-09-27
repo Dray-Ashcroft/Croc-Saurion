@@ -4,37 +4,18 @@ A modern Android client for croc
 
 "croc-app" is an Android client for ""croc"" (https://github.com/schollz/croc), built with Kotlin and Jetpack Compose.
 
-It provides a mobile-first interface for fast file and text sharing, with QR-assisted transfers, saved codes, transfer history, and Android-native sharing.
+A mobile-first interface for fast file and text sharing, QR-assisted transfers, saved codes, transfer history, and Android-native sharing.
 
 </div>---
 
 ✦ Features
 
-📤 Quick Transfer
-Send and receive files or clipboard text with simple mobile-first workflows.
-
-📱 QR Pairing
-Generate and scan QR codes for fast transfer setup.
-
-🔐 Saved Codes
-Save frequently used send and receive codes.
-
-🕘 Transfer History
-Keep track of previous transfers and favourites.
-
-🔗 Android Integration
-Android share-sheet support and deep links.
-
-🎨 Material 3
-A native Android interface built with Jetpack Compose.
-
----
-
-✦ Why this project exists
-
-Inspired by ""croc-gui"" (https://github.com/howeyc/crocgui), "croc-app" aims to provide a more modern and feature-complete Android experience around ""croc"" (https://github.com/schollz/croc).
-
-The project focuses on making "croc" practical for everyday mobile use while staying close to the original croc engine.
+- 📤 Send and receive files or clipboard text
+- 📱 QR code generation and scanning
+- 🔐 Saved send and receive codes
+- 🕘 Transfer history and favourites
+- 🔗 Android share-sheet support and deep links
+- 🎨 Material 3 interface
 
 ---
 
@@ -57,17 +38,9 @@ Certificate fingerprint:
 
 73:AA:29:BF:43:61:23:E6:76:52:33:D1:1F:05:ED:82:D8:EE:72:D4:D3:F8:D9:A0:0E:D6:A2:70:BE:9A:29:6A
 
-Current version: "6.1.0"
+Version: "6.1.0"
 
 "News · Change Logs" (https://github.com/Dking08/croc-app/tree/master/fastlane/metadata/android/en-US/changelogs)
-
----
-
-✦ Typical Use
-
-A primary use case is quick clipboard transfer between phone and desktop.
-
-The desktop can run "croc" with a saved code, while "croc-app" receives the text directly on the phone. The same workflow works in reverse.
 
 ---
 
@@ -75,28 +48,11 @@ The desktop can run "croc" with a saved code, while "croc-app" receives the text
 
 Kotlin · Jetpack Compose · Material 3 · croc
 
-Project structure: Android application with Gradle
-
-Standard build:
+Build:
 
 ./gradlew assembleRelease
 
 For reproducible builds, see ""reproducible-build/"" (https://github.com/Dking08/croc-app/tree/master/reproducible-build).
-
----
-
-✦ Project Status
-
-"croc-app" is under active development.
-
-Design goals: fast · simple · native · polished
-
----
-
-✦ Related Projects
-
-- ""croc-gui"" (https://github.com/howeyc/crocgui) — earlier mobile-oriented GUI work around "croc"
-- ""croc"" (https://github.com/schollz/croc) — the underlying file-transfer engine
 
 ---
 
@@ -106,8 +62,5 @@ Contributions are welcome. See ""CONTRIBUTING.md"" (https://github.com/Dking08/c
 
 ---
 
-<div align="center">Credits
-
-Built around ""croc"" (https://github.com/schollz/croc), inspired by ""croc-gui"" (https://github.com/howeyc/crocgui).
-
-</div>
+Inspired by: ""croc-gui"" (https://github.com/howeyc/crocgui)
+Built around: ""croc"" (https://github.com/schollz/croc)
