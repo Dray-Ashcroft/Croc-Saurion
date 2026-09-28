@@ -1,80 +1,102 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Croc-Saurian — File Sharing" width="100%">
-</p>🐊 Croc-Saurian
+  <img src="assets/banner.png" alt="Kroc-Sauria — Minimalist File Sharing" width="100%">
+</p><h1 align="center">Kroc-Sauria</h1><p align="center">
+  <strong>Fork Mascot of Croc</strong>
+</p><p align="center">
+  A minimalist file-sharing app for seamless sharing across devices.
+</p><p align="center">
+  Kotlin · Jetpack Compose · Material 3
+</p>---
 
-Simple file sharing across your devices
+✦ About
 
-«Croc-Saurian is a modern Android client for ""croc"" (https://github.com/schollz/croc), built with Kotlin and Jetpack Compose.
+Kroc-Sauria is a minimalist Android file-sharing app for seamless transfer of files and text across devices.
 
-📱 Android · 🪟 Windows · 📟 Tablet · 📁 File & Text Sharing»
+Built with Kotlin + Jetpack Compose.
+
+Origin & Fork
+
+Kroc-Sauria is a fork of Croc, the original file-transfer project by schollz.
+
+This fork focuses on the Android client experience, with a refreshed interface, Kroc-Sauria branding and mascot, and continued development using Kotlin + Jetpack Compose.
+
+The underlying Croc project and its original authors remain credited.
+
+Original project:
+"Croc — getcroc.com" (https://getcroc.com/?utm_source=chatgpt.com)
 
 ---
 
 ✦ Features
 
 📤 File & Text Sharing
-Send and receive files or clipboard text between devices.
+
+Send files or clipboard text between connected devices.
 
 📱 QR Pairing
+
 Quickly connect devices using QR codes.
 
 🔐 Saved Codes
-Save frequently used transfer codes.
+
+Save frequently used transfer codes for later use.
 
 🕘 Transfer History
+
 Keep track of previous transfers.
 
 🔗 Android Integration
+
 Android share-sheet support and deep links.
 
 🎨 Material 3
+
 A clean, modern interface built with Jetpack Compose.
 
 ---
 
 📱 Screenshots
 
-<div align="center"><img src="Screenshots/send.jpg" alt="Send" width="30%">
-<img src="Screenshots/quick.jpg" alt="Quick Transfer" width="30%">
-<img src="Screenshots/recieve.jpg" alt="Receive" width="30%"><img src="Screenshots/send-files.jpg" alt="Send Files" width="30%">
-<img src="Screenshots/quick-send.jpg" alt="Quick Send" width="30%">
-<img src="Screenshots/quick-rec.jpg" alt="Quick Receive" width="30%"></div>---
+<p align="center">
+  <img src="Screenshots/send.jpg" alt="Send" width="30%">
+  <img src="Screenshots/quick.jpg" alt="Quick Transfer" width="30%">
+  <img src="Screenshots/recieve.jpg" alt="Receive" width="30%">
+</p><p align="center">
+  <img src="Screenshots/send-files.jpg" alt="Send Files" width="30%">
+  <img src="Screenshots/quick-send.jpg" alt="Quick Send" width="30%">
+  <img src="Screenshots/quick-rec.jpg" alt="Quick Receive" width="30%">
+</p>---
 
 ✦ Download
 
-F-Droid · GitHub Releases · Obtainium
+☁️ Kroc-Sauria
 
-"Get Croc-Saurian on F-Droid" (https://f-droid.org/en/packages/com.dking.crocapp/) · "GitHub Release" (https://github.com/Dking08/croc-app/releases/latest/download/croc-app.apk) · "Obtainium" (https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/Dking08/croc-app/)
+Download the latest release from the official Kroc-Sauria download page.
+
+<p align="center">[ Download Kroc-Sauria ]
+
+</p>Additional distribution:
+
+- F-Droid
+- GitHub Releases
+- Obtainium
 
 Package: "com.dking.crocapp"
-Version: "6.1.0"
+Current version: "6.1.0"
 
 ---
 
 ⚙️ Technology
 
-Kotlin · Jetpack Compose · Material 3 · croc
-
-Built with Jetpack Compose.
-Forked from ""croc-app"" (https://github.com/Dking08/croc-app), based on ""croc"" (https://github.com/schollz/croc).
-
-Build
-
-./gradlew assembleRelease
-
-For reproducible builds, see ""reproducible-build/"" (https://github.com/Dking08/croc-app/tree/master/reproducible-build).
+- Kotlin
+- Jetpack Compose
+- Material 3 u
+- Croc
 
 ---
 
-✦ Contributing
-
-Contributions are welcome.
-
-See ""CONTRIBUTING.md"" (https://github.com/Dking08/croc-app/blob/master/CONTRIBUTING.md).
-
----
-
-<div align="center">Croc-Saurian 🐊
-Built with Jetpack Compose · Forked from Croc.app
-
-</div>
+<p align="center">
+  <strong>Kroc-Sauria 🐊</strong>
+  <br>
+  <sub>Built with Kotlin + Jetpack Compose · Forked from Croc</sub>
+</p>
