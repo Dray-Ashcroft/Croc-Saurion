@@ -139,16 +139,19 @@ fun TransferProgressCard(
                         label = "progress"
                     )
 
-                    LinearProgressIndicator(
-                        progress = { animatedProgress },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(8.dp)
-                            .clip(MaterialTheme.shapes.small),
-                        color = MaterialTheme.colorScheme.primary,
-                        trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        strokeCap = StrokeCap.Round
-                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        CrocProgressMarker(progress = animatedProgress)
+                        LinearProgressIndicator(
+                            progress = { animatedProgress },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(8.dp)
+                                .clip(MaterialTheme.shapes.small),
+                            color = MaterialTheme.colorScheme.primary,
+                            trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                            strokeCap = StrokeCap.Round
+                        )
+                    }
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),

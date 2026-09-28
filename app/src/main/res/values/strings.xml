@@ -81,11 +81,11 @@
 
     <!-- Quick Progress Labels -->
     <string name="quick_progress_preparing">Preparing</string>
-    <string name="quick_progress_waiting_send">Waiting for receiver</string>
-    <string name="quick_progress_waiting_receive">Waiting for sender</string>
+    <string name="quick_progress_waiting_send">Waiting for a bite…</string>
+    <string name="quick_progress_waiting_receive">Sniffing for the sender…</string>
     <string name="quick_progress_transferring_send">Live transfer</string>
     <string name="quick_progress_transferring_receive">Saving to Downloads</string>
-    <string name="quick_progress_complete">Complete</string>
+    <string name="quick_progress_complete">Chomped!</string>
     <string name="quick_progress_error">Needs attention</string>
     <string name="quick_progress_cancelled">Stopped</string>
 
@@ -163,7 +163,7 @@
     <!-- ════ Transfer Progress ════ -->
     <string name="transfer_preparing_upload">Preparing upload…</string>
     <string name="transfer_preparing_download">Preparing download…</string>
-    <string name="transfer_waiting_peer">Waiting for peer…</string>
+    <string name="transfer_waiting_peer">Waiting for a bite…</string>
     <string name="transfer_connecting">Connecting to sender…</string>
     <string name="transfer_share_code_hint">Share the code with the receiver</string>
     <string name="transfer_verifying_code">Verifying code phrase…</string>

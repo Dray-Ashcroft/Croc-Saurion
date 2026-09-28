@@ -120,7 +120,7 @@ private val ExpressiveShapes = Shapes(
 @Composable
 fun CrocTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     amoledDark: Boolean = false,
     content: @Composable () -> Unit
 ) {

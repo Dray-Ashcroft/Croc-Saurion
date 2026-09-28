@@ -100,6 +100,7 @@ import com.dking.crocapp.ui.receive.ReceivedFile
 import com.dking.crocapp.ui.receive.openReceivedFile
 import com.dking.crocapp.ui.receive.shareReceivedFile
 import com.dking.crocapp.ui.pairing.CrocPairingAnimation
+import com.dking.crocapp.ui.components.CrocProgressMarker
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -779,13 +780,16 @@ private fun QuickTransferProgress(
             }
             is CrocTransferState.Transferring,
             is CrocTransferState.Completed -> {
-                LinearProgressIndicator(
-                    progress = { animatedProgress },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(8.dp)
-                        .clip(MaterialTheme.shapes.small)
-                )
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    CrocProgressMarker(progress = animatedProgress)
+                    LinearProgressIndicator(
+                        progress = { animatedProgress },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(8.dp)
+                            .clip(MaterialTheme.shapes.small)
+                    )
+                }
             }
             else -> Unit
         }
