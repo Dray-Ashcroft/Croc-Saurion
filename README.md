@@ -75,24 +75,14 @@ Download the latest release from the official Kroc-Sauria download page.
 
 <p align="center">[ Download Kroc-Sauria ]
 
-</p>Additional distribution:
-
-- F-Droid
-- GitHub Releases
-- Obtainium
-
-Package: "com.dking.crocapp"
-Current version: "6.1.0"
-
 ---
 
 ⚙️ Technology
 
-- Kotlin
-- Jetpack Compose
-- Material 3 u
-- Croc
-
+Repository: GitHub & Codeberg
+Hosting: Cloudflare
+UI Framework: Kotlin + Jetpack Compose
+Code Implementation: Claude Fable 5.0
 ---
 
 <p align="center">
