@@ -1,0 +1,72 @@
+name: Apply patch zip and build
+
+on:
+  push:
+    branches: [ master ]
+    paths: [ 'patch*.zip' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Apply patch zip(s)
+        run: |
+          shopt -s nullglob
+          zips=(patch*.zip)
+          if [ ${#zips[@]} -gt 0 ]; then
+            for z in "${zips[@]}"; do
+              echo "Applying $z"
+              unzip -o -q "$z" -x '__MACOSX/*'
+              if [ -f _delete.txt ]; then
+                while IFS= read -r p || [ -n "$p" ]; do
+                  p="${p%$'\r'}"
+                  [ -z "$p" ] && continue
+                  case "$p" in /*|*..*) echo "skip unsafe path: $p"; continue;; esac
+                  git rm -rf -q --ignore-unmatch -- "$p"
+                  rm -rf -- "$p"
+                done < _delete.txt
+                rm -f _delete.txt
+              fi
+              git rm -f -q -- "$z"
+            done
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "Apply patch zip" || echo "Nothing to commit"
+            git push
+          else
+            echo "No patch*.zip found; building current master"
+          fi
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Go (current croc engine)
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: third_party/croc-src/go.mod
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build debug APK
+        run: gradle assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: croc-app-debug
+          path: app/build/outputs/apk/debug/*.apk
