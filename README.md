@@ -1,29 +1,33 @@
 <p align="center">
   <img src="assets/banner.png" alt="Kroc-Sauria — Minimalist File Sharing" width="100%">
 </p><h1 align="center">Kroc-Sauria</h1><p align="center">
-  <strong>Fork Mascot of Croc</strong>
+  <strong>A minimalist Android file-sharing client</strong>
 </p><p align="center">
-  A minimalist file-sharing app for seamless sharing across devices.
+  Share files and text seamlessly across devices.
 </p><p align="center">
   Kotlin · Jetpack Compose · Material 3
 </p>---
 
 ✦ About
 
-Kroc-Sauria is a minimalist Android file-sharing app for seamless transfer of files and text across devices.
+Kroc-Sauria is a minimalist Android file-sharing client for transferring files and text between connected devices.
 
-Built with Kotlin + Jetpack Compose.
+Built with Kotlin + Jetpack Compose, it focuses on a clean interface, simple device pairing, and a streamlined sharing experience.
 
 Origin & Fork
 
-Kroc-Sauria is a fork of Croc, the original file-transfer project by schollz.
+Kroc-Sauria is a fork of "Croc" (https://github.com/schollz/croc), the original file-transfer project by schollz.
 
-This fork focuses on the Android client experience, with a refreshed interface, Kroc-Sauria branding and mascot, and continued development using Kotlin + Jetpack Compose.
+This fork focuses on the Android client experience, with:
 
-The underlying Croc project and its original authors remain credited.
+- A refreshed Android interface
+- Kroc-Sauria branding and mascot
+- Jetpack Compose + Material 3 UI
+- Continued development of the Android client
 
-Original project:
-"Croc — getcroc.com" (https://getcroc.com/?utm_source=chatgpt.com)
+The original Croc project and its authors remain credited.
+
+Original project: "Croc — getcroc.com" (https://getcroc.com/)
 
 ---
 
@@ -31,7 +35,7 @@ Original project:
 
 📤 File & Text Sharing
 
-Send files or clipboard text between connected devices.
+Transfer files or clipboard text between connected devices.
 
 📱 QR Pairing
 
@@ -39,7 +43,7 @@ Quickly connect devices using QR codes.
 
 🔐 Saved Codes
 
-Save frequently used transfer codes for later use.
+Save frequently used transfer codes for convenient reuse.
 
 🕘 Transfer History
 
@@ -47,11 +51,11 @@ Keep track of previous transfers.
 
 🔗 Android Integration
 
-Android share-sheet support and deep links.
+Use Android's share sheet and supported deep links for quick sharing.
 
 🎨 Material 3
 
-A clean, modern interface built with Jetpack Compose.
+A clean, modern interface built with Jetpack Compose and Material 3.
 
 ---
 
@@ -69,20 +73,23 @@ A clean, modern interface built with Jetpack Compose.
 
 ✦ Download
 
-☁️ Kroc-Sauria
-
-Download the latest release from the official Kroc-Sauria download page.
-
-<p align="center">[ Download Kroc-Sauria ]
-
----
+<p align="center">
+  <a href="YOUR_SUPABASE_DOWNLOAD_URL">
+    <strong>☁️ Download Kroc-Sauria</strong>
+  </a>
+</p><p align="center">
+  Download the latest Android release from the official Kroc-Sauria download page.
+</p>---
 
 ⚙️ Technology
 
-Repository: GitHub & Codeberg
-Hosting: Cloudflare
-UI Framework: Kotlin + Jetpack Compose
-Code Implementation: Claude Fable 5.0
+Component| Technology
+Repository| GitHub & Codeberg
+Hosting| Supabase
+UI| Kotlin + Jetpack Compose
+Design| Material 3
+Code Implementation| Claude Opus 4.8
+
 ---
 
 <p align="center">
