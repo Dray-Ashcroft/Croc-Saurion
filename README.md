@@ -14,7 +14,7 @@ It supports file and text sharing, QR-based pairing, saved transfer codes, trans
 
 🐊 A Croc Fork
 
-Kroc-Sauria is a fork of "Croc" (https://github.com/schollz/croc) by schollz.
+Kroc-Sauria is an Android-focused fork of Croc by schollz.
 
 This fork focuses on the Android client experience, introducing:
 
@@ -25,7 +25,7 @@ This fork focuses on the Android client experience, introducing:
 
 The original Croc project and its authors remain credited.
 
-Original project: "getcroc.com" (https://getcroc.com/)
+Original project: getcroc.com
 
 ---
 
@@ -63,16 +63,6 @@ Modern interface built with Jetpack Compose.
   <img src="Screenshots/quick-rec.jpg" alt="Quick Receive" width="30%">
 </p>---
 
-✦ Download
-
-<p align="center">
-  <a href="YOUR_SUPABASE_DOWNLOAD_URL">
-    <strong>☁️ Download Kroc-Sauria</strong>
-  </a>
-</p><p align="center">
-  Latest Android release hosted through Supabase.
-</p>---
-
 ⚙️ Technology
 
 UI: Kotlin · Jetpack Compose · Material 3
@@ -84,10 +74,10 @@ Implementation: Claude Opus 4.8
 
 ✦ Credits
 
-Kroc-Sauria is based on "Croc" (https://github.com/schollz/croc) by schollz.
+Kroc-Sauria is based on Croc by schollz.
 
 The original Croc project provides the underlying file-transfer foundation.
-This repository focuses on the Android client and its user experience.
+Kroc-Sauria focuses on the Android client and its user experience.
 
 ---
 
