@@ -122,7 +122,7 @@ fun CrocPairingAnimation(
                 .fillMaxWidth()
                 .height(56.dp)
         ) {
-            val travel = maxWidth - 56.dp
+            val travel = maxWidth - 64.dp
 
             Icon(
                 imageVector = Icons.Outlined.Tv,
@@ -141,7 +141,7 @@ fun CrocPairingAnimation(
                 modifier = Modifier
                     .align(Alignment.CenterStart)
                     .offset(x = travel * progress, y = (if (found) 0f else bob).dp)
-                    .size(width = 48.dp, height = 28.dp)
+                    .size(width = 56.dp, height = 33.dp)
                     .scale(if (found) arrivalScale else 1f)
             )
         }

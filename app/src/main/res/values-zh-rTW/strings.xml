@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">croc-app</string>
+    <string name="app_name">Kroc-Sauria</string>
     <!-- ════ Common / General ════ -->
     <string name="action_cancel">取消</string>
     <string name="action_dismiss">關閉</string>

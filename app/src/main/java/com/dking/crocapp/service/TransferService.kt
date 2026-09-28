@@ -7,6 +7,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import com.dking.crocapp.R
 
 class TransferService : Service() {
 
@@ -57,7 +58,7 @@ class TransferService : Service() {
 
     private fun createNotification(text: String): Notification {
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("croc-app")
+            .setContentTitle(getString(R.string.app_name))
             .setContentText(text)
             .setSmallIcon(android.R.drawable.ic_menu_upload)
             .setOngoing(true)
@@ -67,7 +68,7 @@ class TransferService : Service() {
 
     fun updateProgress(fileName: String, progress: Int) {
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("croc-app")
+            .setContentTitle(getString(R.string.app_name))
             .setContentText(fileName)
             .setSmallIcon(android.R.drawable.ic_menu_upload)
             .setOngoing(true)

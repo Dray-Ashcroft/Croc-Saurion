@@ -281,7 +281,7 @@ private fun QuickBrandHeader() {
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.croc_icon),
-                        contentDescription = "croc-app icon",
+                        contentDescription = stringResource(R.string.app_name),
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.size(46.dp).clip(CircleShape)
                     )
