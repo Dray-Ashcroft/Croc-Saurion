@@ -44,63 +44,77 @@ import kotlin.math.sin
 class CrocodileRig {
 
     // ---- global procedural controls ---------------------------------
+    // Each is a *private* backing field plus a public get-only property of
+    // the same base name, rather than `var x by ... ; private set` next to
+    // a same-named setX() function. Kotlin auto-generates a setX(...) JVM
+    // method for the latter pattern's `var`, which collides at the
+    // bytecode level with an explicitly-declared setX() in the same class
+    // — a real compile error, not just a style nit.
+    //
     // These must be Compose state, not plain vars: setWalking() is called
     // from a *different* composable (whatever hosts this rig) than the one
     // holding `LaunchedEffect(rig.walking)` below. A plain var mutation
     // from outside would never trigger that composable to recompose, so
     // the key would never be seen as changed and the driver would never
     // actually start or stop.
-    var walking: Boolean by mutableStateOf(false)
-        private set
-    var walkSpeed: Float by mutableFloatStateOf(1f)
-        private set
-    var legAmplitude: Float by mutableFloatStateOf(20f)
-        private set
-    var kneeBendAmplitude: Float by mutableFloatStateOf(34f)
-        private set
-    var direction: Float by mutableFloatStateOf(1f) // 1f = forward, -1f = gait runs in reverse
-        private set
+    private var _walking by mutableStateOf(false)
+    val walking: Boolean get() = _walking
 
-    fun setWalking(enabled: Boolean) { walking = enabled }
-    fun setWalkSpeed(speed: Float) { walkSpeed = speed }
-    fun setLegAmplitude(degrees: Float) { legAmplitude = degrees }
-    fun setKneeBendAmplitude(degrees: Float) { kneeBendAmplitude = degrees }
-    fun setDirection(forward: Boolean) { direction = if (forward) 1f else -1f }
+    private var _walkSpeed by mutableFloatStateOf(1f)
+    val walkSpeed: Float get() = _walkSpeed
+
+    private var _legAmplitude by mutableFloatStateOf(20f)
+    val legAmplitude: Float get() = _legAmplitude
+
+    private var _kneeBendAmplitude by mutableFloatStateOf(34f)
+    val kneeBendAmplitude: Float get() = _kneeBendAmplitude
+
+    private var _direction by mutableFloatStateOf(1f) // 1f = forward, -1f = gait runs in reverse
+    val direction: Float get() = _direction
+
+    fun setWalking(enabled: Boolean) { _walking = enabled }
+    fun setWalkSpeed(speed: Float) { _walkSpeed = speed }
+    fun setLegAmplitude(degrees: Float) { _legAmplitude = degrees }
+    fun setKneeBendAmplitude(degrees: Float) { _kneeBendAmplitude = degrees }
+    fun setDirection(forward: Boolean) { _direction = if (forward) 1f else -1f }
 
     // ---- per-joint angles, degrees — each is its own Compose state so ---
     // ---- CrocodileCanvas's draw phase can read them independently -------
-    var frontLeftHipAngle by mutableFloatStateOf(0f)
-        private set
-    var frontLeftKneeAngle by mutableFloatStateOf(0f)
-        private set
-    var frontRightHipAngle by mutableFloatStateOf(0f)
-        private set
-    var frontRightKneeAngle by mutableFloatStateOf(0f)
-        private set
-    var rearLeftHipAngle by mutableFloatStateOf(0f)
-        private set
-    var rearLeftKneeAngle by mutableFloatStateOf(0f)
-        private set
-    var rearRightHipAngle by mutableFloatStateOf(0f)
-        private set
-    var rearRightKneeAngle by mutableFloatStateOf(0f)
-        private set
+    private var _frontLeftHipAngle by mutableFloatStateOf(0f)
+    val frontLeftHipAngle: Float get() = _frontLeftHipAngle
+    private var _frontLeftKneeAngle by mutableFloatStateOf(0f)
+    val frontLeftKneeAngle: Float get() = _frontLeftKneeAngle
 
-    var headAngle by mutableFloatStateOf(0f)
-        private set
-    var tailSwayAngle by mutableFloatStateOf(0f)
-        private set
+    private var _frontRightHipAngle by mutableFloatStateOf(0f)
+    val frontRightHipAngle: Float get() = _frontRightHipAngle
+    private var _frontRightKneeAngle by mutableFloatStateOf(0f)
+    val frontRightKneeAngle: Float get() = _frontRightKneeAngle
 
-    fun setFrontLeftHipAngle(degrees: Float) { frontLeftHipAngle = degrees }
-    fun setFrontLeftKneeAngle(degrees: Float) { frontLeftKneeAngle = degrees }
-    fun setFrontRightHipAngle(degrees: Float) { frontRightHipAngle = degrees }
-    fun setFrontRightKneeAngle(degrees: Float) { frontRightKneeAngle = degrees }
-    fun setRearLeftHipAngle(degrees: Float) { rearLeftHipAngle = degrees }
-    fun setRearLeftKneeAngle(degrees: Float) { rearLeftKneeAngle = degrees }
-    fun setRearRightHipAngle(degrees: Float) { rearRightHipAngle = degrees }
-    fun setRearRightKneeAngle(degrees: Float) { rearRightKneeAngle = degrees }
-    fun setHeadAngle(degrees: Float) { headAngle = degrees }
-    fun setTailSwayAngle(degrees: Float) { tailSwayAngle = degrees }
+    private var _rearLeftHipAngle by mutableFloatStateOf(0f)
+    val rearLeftHipAngle: Float get() = _rearLeftHipAngle
+    private var _rearLeftKneeAngle by mutableFloatStateOf(0f)
+    val rearLeftKneeAngle: Float get() = _rearLeftKneeAngle
+
+    private var _rearRightHipAngle by mutableFloatStateOf(0f)
+    val rearRightHipAngle: Float get() = _rearRightHipAngle
+    private var _rearRightKneeAngle by mutableFloatStateOf(0f)
+    val rearRightKneeAngle: Float get() = _rearRightKneeAngle
+
+    private var _headAngle by mutableFloatStateOf(0f)
+    val headAngle: Float get() = _headAngle
+    private var _tailSwayAngle by mutableFloatStateOf(0f)
+    val tailSwayAngle: Float get() = _tailSwayAngle
+
+    fun setFrontLeftHipAngle(degrees: Float) { _frontLeftHipAngle = degrees }
+    fun setFrontLeftKneeAngle(degrees: Float) { _frontLeftKneeAngle = degrees }
+    fun setFrontRightHipAngle(degrees: Float) { _frontRightHipAngle = degrees }
+    fun setFrontRightKneeAngle(degrees: Float) { _frontRightKneeAngle = degrees }
+    fun setRearLeftHipAngle(degrees: Float) { _rearLeftHipAngle = degrees }
+    fun setRearLeftKneeAngle(degrees: Float) { _rearLeftKneeAngle = degrees }
+    fun setRearRightHipAngle(degrees: Float) { _rearRightHipAngle = degrees }
+    fun setRearRightKneeAngle(degrees: Float) { _rearRightKneeAngle = degrees }
+    fun setHeadAngle(degrees: Float) { _headAngle = degrees }
+    fun setTailSwayAngle(degrees: Float) { _tailSwayAngle = degrees }
 
     /** Seconds, advances only while [walking]; persists across stop/start so a resumed walk doesn't jump. */
     internal var timeSeconds: Float = 0f
