@@ -339,8 +339,6 @@ private fun TransferStatusSection(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        CrocPairingAnimation(state = state)
-
         if (isSending) {
             QuickSendTransferCard(
                 state = state,
@@ -447,6 +445,8 @@ private fun QuickSendTransferCard(
             modifier = Modifier.padding(18.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            CrocPairingAnimation(state = state)
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -546,6 +546,8 @@ private fun QuickReceiveTransferCard(
             modifier = Modifier.padding(18.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            CrocPairingAnimation(state = state)
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
