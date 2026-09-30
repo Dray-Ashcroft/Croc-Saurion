@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -140,7 +141,10 @@ fun TransferProgressCard(
                     )
 
                     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                        CrocProgressMarker(progress = animatedProgress)
+                        TransferCrocProgressMarker(
+                            state = state,
+                            progress = animatedProgress
+                        )
                         LinearProgressIndicator(
                             progress = { animatedProgress },
                             modifier = Modifier
@@ -286,6 +290,28 @@ fun TransferProgressCard(
                 else -> {}
             }
         }
+    }
+}
+
+@Composable
+private fun TransferCrocProgressMarker(
+    state: CrocTransferState.Transferring,
+    progress: Float
+) {
+    val p = if (progress.isNaN()) 0f else progress.coerceIn(0f, 1f)
+    BoxWithConstraints(
+        modifier = Modifier.fillMaxWidth().height(20.dp)
+    ) {
+        val markerWidth = 30.dp
+        val travel = (maxWidth - markerWidth).coerceAtLeast(0.dp)
+        CrocPairingAnimation(
+            state = state,
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .offset(x = travel * p)
+                .width(markerWidth),
+            compact = true
+        )
     }
 }
 
