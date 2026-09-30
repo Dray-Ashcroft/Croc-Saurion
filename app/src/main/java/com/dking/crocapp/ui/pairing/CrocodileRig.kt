@@ -104,6 +104,8 @@ class CrocodileRig {
     val headAngle: Float get() = _headAngle
     private var _tailSwayAngle by mutableFloatStateOf(0f)
     val tailSwayAngle: Float get() = _tailSwayAngle
+    private var _bodyBobOffset by mutableFloatStateOf(0f)
+    val bodyBobOffset: Float get() = _bodyBobOffset
 
     fun setFrontLeftHipAngle(degrees: Float) { _frontLeftHipAngle = degrees }
     fun setFrontLeftKneeAngle(degrees: Float) { _frontLeftKneeAngle = degrees }
@@ -115,6 +117,7 @@ class CrocodileRig {
     fun setRearRightKneeAngle(degrees: Float) { _rearRightKneeAngle = degrees }
     fun setHeadAngle(degrees: Float) { _headAngle = degrees }
     fun setTailSwayAngle(degrees: Float) { _tailSwayAngle = degrees }
+    fun setBodyBobOffset(pixels: Float) { _bodyBobOffset = pixels }
 
     /** Seconds, advances only while [walking]; persists across stop/start so a resumed walk doesn't jump. */
     internal var timeSeconds: Float = 0f
@@ -178,9 +181,15 @@ private fun applyGait(rig: CrocodileRig) {
     rig.setRearLeftHipAngle(hipAngle(phaseB))
     rig.setRearLeftKneeAngle(kneeAngle(phaseB))
 
-    // Light secondary motion. Deliberately NOT touching the body/root, and
-    // deliberately not touching headAngle — only these two child nodes.
+    // Light secondary motion, all subtle by design — the legs are the part
+    // that should read as obviously moving; these are texture on top.
     rig.setTailSwayAngle(4f * sin(t * 0.5f + PI.toFloat() / 2f))
+    rig.setHeadAngle(2.5f * sin(t * 0.5f)) // gentle counter-sway vs. the tail
+    // Two footfalls per stride, always >= 0 — the body settles slightly on
+    // each step rather than floating up, and never moves independently of
+    // the legs (this offset is applied to the whole assembly in the
+    // renderer, legs included, so nothing detaches at the hip).
+    rig.setBodyBobOffset(1.6f * (0.5f - 0.5f * kotlin.math.cos(2f * t)))
 }
 
 private const val TWO_PI = (2.0 * PI).toFloat()
