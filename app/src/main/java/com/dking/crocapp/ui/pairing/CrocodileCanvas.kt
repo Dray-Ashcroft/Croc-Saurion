@@ -90,8 +90,15 @@ private val HeadPivot = BodyTopLeft + Offset(439f, 50f)
 // ~40% thinner) — these weren't necessarily drawn to interlock to the
 // pixel, so a small overlap hides the residual step instead of chasing an
 // exact edge match that may not exist in the source art.
-private val TailTopLeftRest = TailPivot - Offset(302f - 4f, 14f)
-private val HeadTopLeftRest = HeadPivot - Offset(0f + 4f, 33f)
+// 4px wasn't enough: the two cut edges meet at the ridge point but aren't
+// parallel, so they diverge below it into a wedge-shaped gap toward the
+// belly (confirmed by zooming into the actual rendered screenshot — a
+// visible triangle of background showing through on both seams). Since
+// each piece is drawn after the one it overlaps, more overlap just means
+// more of the later piece's own fill covering that wedge — safe, no
+// distortion, just needs to be generous enough to actually close it.
+private val TailTopLeftRest = TailPivot - Offset(302f - 20f, 14f)
+private val HeadTopLeftRest = HeadPivot - Offset(0f + 20f, 33f)
 
 /** Per-leg anchor points, in that leg image's OWN local pixel space (not canvas space). */
 private data class LegAnchors(val upperTop: Offset, val upperBottom: Offset, val lowerTop: Offset)
