@@ -10,6 +10,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -21,9 +22,11 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.res.imageResource
 import com.dking.crocapp.R
 import kotlin.math.PI
+import kotlin.math.abs
 import kotlin.math.sin
 
 /**
@@ -110,6 +113,79 @@ private val RearRightAnchors = LegAnchors(Offset(63.3f, 9.4f), Offset(29.8f, 77.
 
 private val WaterColor = Color(0xFF6FB8C9)
 
+// Crocodile bellies read as plated/scaled, not smooth like a lizard's —
+// that's the "looks like a lizard" note. This doesn't touch the artwork:
+// it samples the REAL cream pixels already in body/tail.png and dots small
+// darker scute marks only where that color actually is, so the pattern
+// follows the belly's true (diagonal, curved) shape instead of a guessed
+// rectangle. Computed once per bitmap via remember, not per frame.
+private val ScuteColor = Color(0xFF8E8557)
+
+private fun isCreamPixel(c: Color): Boolean {
+    val r = c.red; val g = c.green; val b = c.blue
+    return c.alpha > 0.4f && r > 0.62f && g > 0.60f && b > 0.40f && abs(r - g) < 0.16f
+}
+
+private fun creamScutePoints(bitmap: ImageBitmap, stepX: Int, stepY: Int): List<Offset> {
+    val pixels = bitmap.toPixelMap()
+    val points = mutableListOf<Offset>()
+    var y = 2
+    while (y < bitmap.height - 1) {
+        var x = 2
+        while (x < bitmap.width - 1) {
+            if (isCreamPixel(pixels[x, y])) points.add(Offset(x.toFloat(), y.toFloat()))
+            x += stepX
+        }
+        y += stepY
+    }
+    return points
+}
+
+private fun DrawScope.drawScutes(points: List<Offset>, origin: Offset) {
+    for ((i, p) in points.withIndex()) {
+        // Slight alternating size/alpha so it reads as organic plates, not a printed grid.
+        val w = if (i % 2 == 0) 6.5f else 5.5f
+        val h = w * 0.62f
+        val a = if (i % 3 == 0) 0.22f else 0.30f
+        drawRoundRect(
+            color = ScuteColor.copy(alpha = a),
+            topLeft = Offset(origin.x + p.x - w / 2f, origin.y + p.y - h / 2f),
+            size = androidx.compose.ui.geometry.Size(w, h),
+            cornerRadius = androidx.compose.ui.geometry.CornerRadius(1.6f, 1.6f)
+        )
+    }
+}
+
+/**
+ * A soft, low-alpha crease at the tail/body join — the "more naturalistic
+ * joint" ask. The 20px overlap already closes the gap; this doesn't touch
+ * that, it just lays a faint curved shadow over the seam so it reads as a
+ * fold in the animal's skin rather than two flat images stacked on top of
+ * each other. Purely decorative, drawn after both pieces.
+ */
+private fun DrawScope.drawTailJointCrease(pivot: Offset) {
+    val path = Path().apply {
+        moveTo(pivot.x - 3f, pivot.y - 6f)
+        quadraticBezierTo(pivot.x + 4f, pivot.y + 20f, pivot.x - 2f, pivot.y + 48f)
+    }
+    drawPath(
+        path = path,
+        color = Color(0xFF1B4632).copy(alpha = 0.22f),
+        style = Stroke(width = 3.2f, cap = StrokeCap.Round)
+    )
+    // A faint lighter highlight just past the crease reads as the near
+    // edge of the fold catching light — same trick a hand-drawn fold uses.
+    val highlight = Path().apply {
+        moveTo(pivot.x + 1f, pivot.y - 4f)
+        quadraticBezierTo(pivot.x + 8f, pivot.y + 20f, pivot.x + 2f, pivot.y + 46f)
+    }
+    drawPath(
+        path = highlight,
+        color = Color(0xFFCBDA9E).copy(alpha = 0.16f),
+        style = Stroke(width = 1.8f, cap = StrokeCap.Round)
+    )
+}
+
 @Composable
 fun CrocodileCanvas(
     rig: CrocodileRig,
@@ -126,6 +202,9 @@ fun CrocodileCanvas(
     val rearLeftLower = ImageBitmap.imageResource(R.drawable.rig_rear_left_lower)
     val rearRightUpper = ImageBitmap.imageResource(R.drawable.rig_rear_right_upper)
     val rearRightLower = ImageBitmap.imageResource(R.drawable.rig_rear_right_lower)
+
+    val bodyScutes = remember(body) { creamScutePoints(body, stepX = 11, stepY = 8) }
+    val tailScutes = remember(tail) { creamScutePoints(tail, stepX = 11, stepY = 8) }
 
     val infinite = rememberInfiniteTransition(label = "waterRipple")
     val ripplePhase by infinite.animateFloat(
@@ -152,8 +231,11 @@ fun CrocodileCanvas(
 
                 rotate(degrees = rig.tailSwayAngle, pivot = TailPivot) {
                     drawImage(tail, topLeft = TailTopLeftRest)
+                    drawScutes(tailScutes, origin = TailTopLeftRest)
                 }
                 drawImage(body, topLeft = BodyTopLeft)
+                drawScutes(bodyScutes, origin = BodyTopLeft)
+                drawTailJointCrease(TailPivot)
                 rotate(degrees = rig.headAngle, pivot = HeadPivot) {
                     drawImage(head, topLeft = HeadTopLeftRest)
                 }
