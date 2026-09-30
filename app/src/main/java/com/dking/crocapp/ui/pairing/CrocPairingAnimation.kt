@@ -32,12 +32,13 @@ import kotlinx.coroutines.delay
  * Behavior:
  *  - Preparing / WaitingForPeer -> the scene mounts (fade + subtle scale in)
  *    and the rig walks continuously (`rig.setWalking(true)`).
- *  - Transferring -> leg swing/knee-bend amplitude eases to 0 over ~500ms
- *    (the "settle" — legs slow to a stop rather than freezing mid-stride),
- *    then `setWalking(false)`, holds briefly, then the whole thing fades
- *    out and unmounts, handing off to the normal progress UI untouched.
+ *  - Transferring -> the full-size pairing scene eases to a stop and fades out.
+ *    With `compact = true`, the same gait keeps running at marker scale while
+ *    the transfer is active.
  *  - Idle / Completed / StoreCompleted / Error / Cancelled / LegacyFallback
  *    -> stops cleanly: a quick plain fade out, no settle flourish.
+ *
+ * The default full-size behavior and timing are unchanged.
  *
  * Renders nothing (zero height, not even a mounted-but-invisible node) once
  * stopped, so it never leaves a stray gap in a host Column that uses
@@ -46,11 +47,13 @@ import kotlinx.coroutines.delay
 @Composable
 fun CrocPairingAnimation(
     state: CrocTransferState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    compact: Boolean = false
 ) {
     val isPairing = state is CrocTransferState.Preparing ||
         state is CrocTransferState.WaitingForPeer
     val justBound = state is CrocTransferState.Transferring
+    val isWalking = isPairing || (compact && justBound)
 
     var mounted by remember { mutableStateOf(false) }
     var visible by remember { mutableStateOf(false) }
@@ -61,8 +64,8 @@ fun CrocPairingAnimation(
     // walk cycle ease to a stop over a few hundred ms instead of the legs
     // freezing mid-stride the instant Transferring arrives.
     val amplitude by animateFloatAsState(
-        targetValue = if (isPairing) 1f else 0f,
-        animationSpec = if (isPairing) tween(220) else tween(500),
+        targetValue = if (isWalking) 1f else 0f,
+        animationSpec = if (isWalking) tween(220) else tween(500),
         label = "crocAmplitude"
     )
     SideEffect {
@@ -70,9 +73,9 @@ fun CrocPairingAnimation(
         rig.setKneeBendAmplitude(34f * amplitude)
     }
 
-    LaunchedEffect(isPairing, justBound) {
+    LaunchedEffect(isPairing, justBound, compact) {
         when {
-            isPairing -> {
+            isPairing || (compact && justBound) -> {
                 mounted = true
                 visible = true
                 rig.setWalking(true)
@@ -114,7 +117,7 @@ fun CrocPairingAnimation(
     ) {
         CrocodileCanvas(
             rig = rig,
-            modifier = modifier.height(48.dp)
+            modifier = modifier.height(if (compact) 10.dp else 48.dp)
         )
     }
 }
