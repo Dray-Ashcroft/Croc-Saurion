@@ -99,17 +99,17 @@ fun CrocodileCanvas(
     rig: CrocodileRig,
     modifier: Modifier = Modifier
 ) {
-    val body = imageResource(R.drawable.rig_body)
-    val tail = imageResource(R.drawable.rig_tail)
-    val head = imageResource(R.drawable.rig_head)
-    val frontLeftUpper = imageResource(R.drawable.rig_front_left_upper)
-    val frontLeftLower = imageResource(R.drawable.rig_front_left_lower)
-    val frontRightUpper = imageResource(R.drawable.rig_front_right_upper)
-    val frontRightLower = imageResource(R.drawable.rig_front_right_lower)
-    val rearLeftUpper = imageResource(R.drawable.rig_rear_left_upper)
-    val rearLeftLower = imageResource(R.drawable.rig_rear_left_lower)
-    val rearRightUpper = imageResource(R.drawable.rig_rear_right_upper)
-    val rearRightLower = imageResource(R.drawable.rig_rear_right_lower)
+    val body = ImageBitmap.imageResource(R.drawable.rig_body)
+    val tail = ImageBitmap.imageResource(R.drawable.rig_tail)
+    val head = ImageBitmap.imageResource(R.drawable.rig_head)
+    val frontLeftUpper = ImageBitmap.imageResource(R.drawable.rig_front_left_upper)
+    val frontLeftLower = ImageBitmap.imageResource(R.drawable.rig_front_left_lower)
+    val frontRightUpper = ImageBitmap.imageResource(R.drawable.rig_front_right_upper)
+    val frontRightLower = ImageBitmap.imageResource(R.drawable.rig_front_right_lower)
+    val rearLeftUpper = ImageBitmap.imageResource(R.drawable.rig_rear_left_upper)
+    val rearLeftLower = ImageBitmap.imageResource(R.drawable.rig_rear_left_lower)
+    val rearRightUpper = ImageBitmap.imageResource(R.drawable.rig_rear_right_upper)
+    val rearRightLower = ImageBitmap.imageResource(R.drawable.rig_rear_right_lower)
 
     val infinite = rememberInfiniteTransition(label = "waterRipple")
     val ripplePhase by infinite.animateFloat(
