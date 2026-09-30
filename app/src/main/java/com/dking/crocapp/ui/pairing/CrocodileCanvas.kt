@@ -79,10 +79,19 @@ private val FrontHip = BodyTopLeft + Offset(386f, 95f)
 // tail's right edge / head's left edge — the seam pivot is the midpoint of
 // that shared edge, so tail and head swing from where they actually meet
 // the torso, not from an arbitrary corner.
-private val TailPivot = BodyTopLeft + Offset(0f, 45.5f)
-private val HeadPivot = BodyTopLeft + Offset(439f, 57f)
-private val TailTopLeftRest = TailPivot - Offset(302f, 17.5f)
-private val HeadTopLeftRest = HeadPivot - Offset(0f, 36.5f)
+// Re-measured against the ridge (top edge) at each seam, not the full
+// opaque-span midpoint: the ridge line is what a viewer's eye actually
+// follows across the join, so that's what has to line up, even if the
+// belly line underneath is a little less exact as a result.
+private val TailPivot = BodyTopLeft + Offset(0f, 40f)
+private val HeadPivot = BodyTopLeft + Offset(439f, 50f)
+// +4px overlap on each: the source pieces are measurably different
+// thickness right at their seams (tail ~30% thicker than body there, head
+// ~40% thinner) — these weren't necessarily drawn to interlock to the
+// pixel, so a small overlap hides the residual step instead of chasing an
+// exact edge match that may not exist in the source art.
+private val TailTopLeftRest = TailPivot - Offset(302f - 4f, 14f)
+private val HeadTopLeftRest = HeadPivot - Offset(0f + 4f, 33f)
 
 /** Per-leg anchor points, in that leg image's OWN local pixel space (not canvas space). */
 private data class LegAnchors(val upperTop: Offset, val upperBottom: Offset, val lowerTop: Offset)
