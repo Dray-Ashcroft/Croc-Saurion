@@ -73,10 +73,11 @@ Modern interface built with Jetpack Compose.
 
 ⚙️ Technology
 
-UI: Kotlin · Jetpack Compose · Material 3
-Hosting: Supabase
-Source: GitHub · Codeberg
-Implementation: Claude Opus 4.8
+<p align="center">
+  <strong>UI</strong> · Kotlin · Jetpack Compose · Material 3<br>
+  <strong>Source</strong> · GitHub · Codeberg<br>
+  <strong>Implementation</strong> · Claude Sonnet 5.5 · GPT 5.6 Luna<br>
+</p>
 
 ---
 
