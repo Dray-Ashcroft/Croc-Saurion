@@ -43,6 +43,9 @@ Keep frequently used transfer codes for later.
 🕘 Transfer History
 View previous transfers.
 
+🐊 Mascot Transfer Animation
+Walking crocodile animation during file transfers.
+
 🔗 Android Integration
 Share through Android's share sheet and deep links.
 
@@ -54,8 +57,8 @@ Modern interface built with Jetpack Compose.
 📱 Screenshots
 
 <p align="center">
-  <img src="Screenshots/Receive (Dark Mode).png" alt="Receive D" width="30%">
-  <img src="Screenshots/Quick (Dark Mode).png" alt="Quick D" width="30%">
+  <img src="Screenshots/Receive (Dark Mode).png" alt="Receive" width="30%">
+  <img src="Screenshots/Quick (Dark Mode).png" alt="Quick" width="30%">
   <img src="Screenshots/Mascot Gait.png" alt="Mascot" width="30%">
 </p>---
 
