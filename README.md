@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Kroc-Sauria — Minimalist File Sharing" width="100%">
+  <img src="assets/repo-banner.png" alt="Kroc-Sauria — Minimalist File Sharing" width="100%">
 </p><h1 align="center">Kroc-Sauria</h1><p align="center">
   <strong>Minimalist file sharing across devices.</strong>
 </p><p align="center">
