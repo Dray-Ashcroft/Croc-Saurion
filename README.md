@@ -32,24 +32,31 @@ Original project: getcroc.com
 ✦ Features
 
 📤 File & Text Sharing
+
 Send files and clipboard text between devices.
 
 📱 QR Pairing
+
 Quickly connect devices using QR codes.
 
 🔐 Saved Codes
+
 Keep frequently used transfer codes for later.
 
 🕘 Transfer History
+
 View previous transfers.
 
 🐊 Mascot Transfer Animation
+
 Walking crocodile animation during file transfers.
 
 🔗 Android Integration
+
 Share through Android's share sheet and deep links.
 
 🎨 Material 3
+
 Modern interface built with Jetpack Compose.
 
 ---
