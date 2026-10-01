@@ -124,7 +124,7 @@ fun TransferProgressCard(
                     val subtitle = buildString {
                         append("${state.fileName} (${state.currentFile}/${state.totalFiles})")
                         if (state.peerIp.isNotBlank()) {
-                            append(" â¢ ${state.peerIp}")
+                            append(" Ã¢ÂÂ¢ ${state.peerIp}")
                         }
                     }
                     TransferHeader(
@@ -188,9 +188,9 @@ fun TransferProgressCard(
                 is CrocTransferState.Completed -> {
                     val count = state.fileCount
                     val subtitle = buildString {
-                        append("$count file${if (count != 1) "s" else ""} â ${formatBytes(state.totalBytes)}")
+                        append("$count file${if (count != 1) "s" else ""} Ã¢ÂÂ ${formatBytes(state.totalBytes)}")
                         if (state.peerIp.isNotBlank()) {
-                            append(" â¢ ${state.peerIp}")
+                            append(" Ã¢ÂÂ¢ ${state.peerIp}")
                         }
                     }
                     TransferHeader(
@@ -302,10 +302,10 @@ private fun TransferCrocProgressMarker(
 ) {
     val p = if (progress.isNaN()) 0f else progress.coerceIn(0f, 1f)
     BoxWithConstraints(
-        modifier = Modifier.fillMaxWidth().height(28.dp)
+        modifier = Modifier.fillMaxWidth().height(36.dp)
     ) {
-        val markerWidth = 48.dp
-        val markerScale = 1.25f
+        val markerWidth = 68.dp
+        val markerScale = 1.8f
         val layoutWidth = markerWidth / markerScale
         val travel = (maxWidth - markerWidth).coerceAtLeast(0.dp)
         CrocPairingAnimation(
