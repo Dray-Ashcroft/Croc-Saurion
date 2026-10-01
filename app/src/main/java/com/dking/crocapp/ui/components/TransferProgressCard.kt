@@ -301,9 +301,9 @@ private fun TransferCrocProgressMarker(
 ) {
     val p = if (progress.isNaN()) 0f else progress.coerceIn(0f, 1f)
     BoxWithConstraints(
-        modifier = Modifier.fillMaxWidth().height(20.dp)
+        modifier = Modifier.fillMaxWidth().height(25.dp)
     ) {
-        val markerWidth = 30.dp
+        val markerWidth = 38.dp
         val travel = (maxWidth - markerWidth).coerceAtLeast(0.dp)
         CrocPairingAnimation(
             state = state,
