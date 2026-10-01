@@ -37,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -123,7 +124,7 @@ fun TransferProgressCard(
                     val subtitle = buildString {
                         append("${state.fileName} (${state.currentFile}/${state.totalFiles})")
                         if (state.peerIp.isNotBlank()) {
-                            append(" • ${state.peerIp}")
+                            append(" â¢ ${state.peerIp}")
                         }
                     }
                     TransferHeader(
@@ -187,9 +188,9 @@ fun TransferProgressCard(
                 is CrocTransferState.Completed -> {
                     val count = state.fileCount
                     val subtitle = buildString {
-                        append("$count file${if (count != 1) "s" else ""} — ${formatBytes(state.totalBytes)}")
+                        append("$count file${if (count != 1) "s" else ""} â ${formatBytes(state.totalBytes)}")
                         if (state.peerIp.isNotBlank()) {
-                            append(" • ${state.peerIp}")
+                            append(" â¢ ${state.peerIp}")
                         }
                     }
                     TransferHeader(
@@ -301,16 +302,22 @@ private fun TransferCrocProgressMarker(
 ) {
     val p = if (progress.isNaN()) 0f else progress.coerceIn(0f, 1f)
     BoxWithConstraints(
-        modifier = Modifier.fillMaxWidth().height(25.dp)
+        modifier = Modifier.fillMaxWidth().height(28.dp)
     ) {
-        val markerWidth = 38.dp
+        val markerWidth = 48.dp
+        val markerScale = 1.25f
+        val layoutWidth = markerWidth / markerScale
         val travel = (maxWidth - markerWidth).coerceAtLeast(0.dp)
         CrocPairingAnimation(
             state = state,
             modifier = Modifier
                 .align(Alignment.CenterStart)
-                .offset(x = travel * p)
-                .width(markerWidth),
+                .offset(x = (markerWidth - layoutWidth) / 2 + travel * p)
+                .width(layoutWidth)
+                .graphicsLayer {
+                    scaleX = markerScale
+                    scaleY = markerScale
+                },
             compact = true
         )
     }
