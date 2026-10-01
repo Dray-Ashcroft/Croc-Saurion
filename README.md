@@ -76,7 +76,7 @@ Modern interface built with Jetpack Compose.
 <p align="center">
   <strong>UI</strong> · Kotlin · Jetpack Compose · Material 3<br>
   <strong>Source</strong> · GitHub · Codeberg<br>
-  <strong>Implementation</strong> · Claude Sonnet 5.5 · GPT 5.6 Luna<br>
+  <strong>Implementation</strong> · Claude Sonnet 5.5 · OpenAI 5.6 Luna<br>
 </p>
 
 ---
