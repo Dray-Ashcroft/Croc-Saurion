@@ -64,11 +64,11 @@ Modern interface built with Jetpack Compose.
 📱 Screenshots
 
 <p align="center">
-  <img src="Screenshots/Quick mode.png" alt="Quick" width="30%">
-  &nbsp;&nbsp;&nbsp;
-  <img src="Screenshots/Mascot Gait.png" alt="Mascot" width="30%">
-    &nbsp;&nbsp;&nbsp;
-  <img src="Screenshots/Settings.png" alt="Setting UI " width="30%">
+  <img src="Screenshots/Quick mode.png" alt="Quick" width="28%">
+  &nbsp;&nbsp;
+  <img src="Screenshots/Mascot Gait.png" alt="Mascot Gait" width="28%">
+  &nbsp;&nbsp;
+  <img src="Screenshots/Settings.png" alt="Settings" width="28%">
 </p>
 
 ⚙️ Technology
