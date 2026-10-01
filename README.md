@@ -55,7 +55,7 @@ Modern interface built with Jetpack Compose.
 
 <p align="center">
   <img src="Screenshots/Send (Light Mode).png" alt="Send L" width="30%">
-  <img src="Screenshots/Quick (Dark Mode).png" alt="Quick D" width="30%">
+  <img src="Screenshots/Quick (Light Mode).png" alt="Quick L" width="30%">
   <img src="Screenshots/Receive (Light Mode).png" alt="Receive L" width="30%">
 </p><p align="center">
   <img src="Screenshots/Receive (Dark Mode).png" alt="Receive D" width="30%">
