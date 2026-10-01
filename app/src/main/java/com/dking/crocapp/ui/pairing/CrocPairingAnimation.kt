@@ -117,7 +117,7 @@ fun CrocPairingAnimation(
     ) {
         CrocodileCanvas(
             rig = rig,
-            modifier = modifier.height(if (compact) 13.dp else 62.dp)
+            modifier = modifier.height(if (compact) 23.dp else 62.dp)
         )
     }
 }

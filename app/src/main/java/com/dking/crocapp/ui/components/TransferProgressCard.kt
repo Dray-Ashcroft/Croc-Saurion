@@ -37,7 +37,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -124,7 +123,7 @@ fun TransferProgressCard(
                     val subtitle = buildString {
                         append("${state.fileName} (${state.currentFile}/${state.totalFiles})")
                         if (state.peerIp.isNotBlank()) {
-                            append(" Ã¢ÂÂ¢ ${state.peerIp}")
+                            append(" • ${state.peerIp}")
                         }
                     }
                     TransferHeader(
@@ -188,9 +187,9 @@ fun TransferProgressCard(
                 is CrocTransferState.Completed -> {
                     val count = state.fileCount
                     val subtitle = buildString {
-                        append("$count file${if (count != 1) "s" else ""} Ã¢ÂÂ ${formatBytes(state.totalBytes)}")
+                        append("$count file${if (count != 1) "s" else ""} — ${formatBytes(state.totalBytes)}")
                         if (state.peerIp.isNotBlank()) {
-                            append(" Ã¢ÂÂ¢ ${state.peerIp}")
+                            append(" • ${state.peerIp}")
                         }
                     }
                     TransferHeader(
@@ -296,28 +295,22 @@ fun TransferProgressCard(
 }
 
 @Composable
-private fun TransferCrocProgressMarker(
+fun TransferCrocProgressMarker(
     state: CrocTransferState.Transferring,
     progress: Float
 ) {
     val p = if (progress.isNaN()) 0f else progress.coerceIn(0f, 1f)
     BoxWithConstraints(
-        modifier = Modifier.fillMaxWidth().height(36.dp)
+        modifier = Modifier.fillMaxWidth().height(28.dp)
     ) {
         val markerWidth = 68.dp
-        val markerScale = 1.8f
-        val layoutWidth = markerWidth / markerScale
         val travel = (maxWidth - markerWidth).coerceAtLeast(0.dp)
         CrocPairingAnimation(
             state = state,
             modifier = Modifier
                 .align(Alignment.CenterStart)
-                .offset(x = (markerWidth - layoutWidth) / 2 + travel * p)
-                .width(layoutWidth)
-                .graphicsLayer {
-                    scaleX = markerScale
-                    scaleY = markerScale
-                },
+                .offset(x = travel * p)
+                .width(markerWidth),
             compact = true
         )
     }
