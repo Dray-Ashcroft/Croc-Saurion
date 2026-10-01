@@ -54,13 +54,13 @@ Modern interface built with Jetpack Compose.
 📱 Screenshots
 
 <p align="center">
-  <img src="Screenshots/send.jpg" alt="Send" width="30%">
-  <img src="Screenshots/quick.jpg" alt="Quick Transfer" width="30%">
-  <img src="Screenshots/receive.jpg" alt="Receive" width="30%">
+  <img src="Screenshots/Send (Light Mode).png" alt="Send L" width="30%">
+  <img src="Screenshots/Quick (Dark Mode).png" alt="Quick D" width="30%">
+  <img src="Screenshots/Receive (Light Mode).png" alt="Receive L" width="30%">
 </p><p align="center">
-  <img src="Screenshots/send-files.jpg" alt="Send Files" width="30%">
-  <img src="Screenshots/quick-send.jpg" alt="Quick Send" width="30%">
-  <img src="Screenshots/quick-rec.jpg" alt="Quick Receive" width="30%">
+  <img src="Screenshots/Receive (Dark Mode).png" alt="Receive D" width="30%">
+  <img src="Screenshots/Quick (Dark Mode).png" alt="Quick D" width="30%">
+  <img src="Screenshots/Send (Dark Mode).png" alt="Send D" width="30%">
 </p>---
 
 ⚙️ Technology
